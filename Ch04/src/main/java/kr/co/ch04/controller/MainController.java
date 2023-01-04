@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MainController {
 	
+	@GetMapping(value = {"/index","/"})
+	public String index() {
+		return "redirect:/user1/register";
+	}
+	
 	@RequestMapping(value = "/hello", method = RequestMethod.GET)
 	public String hello() {
 		return "/hello";
@@ -18,9 +23,13 @@ public class MainController {
 	public String welcome() {
 		return "/welcome";
 	}
+	
 	@GetMapping("/greeting")
 	public String greeting() {
 		return "/greeting";
 	}
+	
+	
+	
 	
 }
