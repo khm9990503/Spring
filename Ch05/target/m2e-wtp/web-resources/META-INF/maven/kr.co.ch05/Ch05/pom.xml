@@ -37,14 +37,28 @@
 	<dependency>
 	    <groupId>org.mybatis</groupId>
 	    <artifactId>mybatis-spring</artifactId>
-	    <version>3.0.1</version>
+	    <version>2.1.0</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-jdbc</artifactId>
+	    <version>5.3.24</version>
 	</dependency>
 	<dependency>
 	    <groupId>mysql</groupId>
 	    <artifactId>mysql-connector-java</artifactId>
 	    <version>8.0.31</version>
 	</dependency>
-	
+	<dependency>
+	    <groupId>org.apache.commons</groupId>
+	    <artifactId>commons-dbcp2</artifactId>
+	    <version>2.9.0</version>
+	</dependency>
+	<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+	</dependency>
   </dependencies>
   <build>
     <finalName>Ch05</finalName>

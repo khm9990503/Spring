@@ -3,12 +3,15 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:context="http://www.springframework.org/schema/context"
     xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:aop="http://www.springframework.org/schema/aop"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         https://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/mvc
-        https://www.springframework.org/schema/mvc/spring-mvc.xsd"
+        https://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd"
         >
 	<!-- 컴포넌트 등록을 위한 태그선언 -->
 	<context:component-scan base-package="kr.co.ch05"/>
@@ -22,6 +25,26 @@
 	    <property name="suffix" value=".jsp"/>
 	</bean>
 	
+	<!-- 데이터베이스(Connection Pool) 설정 -->
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close"> <!-- dbcp2 -->
+	    <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+	    <property name="url" value="jdbc:mysql://127.0.0.1:3306/java1db" />
+	    <property name="username" value="root" />
+	    <property name="password" value="1234" />
+	</bean>
+	
+	<!-- myBatis 설정 -->
+	
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="classpath:mybatis-context.xml"></property>
+	</bean>
+	
+	<!-- myBatis-Spring 설정 -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactoryBean"></constructor-arg>
+	</bean>
 	<!-- AOP 처리를 위한 태그선언 
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	
