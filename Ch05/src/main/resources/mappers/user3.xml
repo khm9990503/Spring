@@ -10,12 +10,19 @@
 	<select id="selectUser3s" resultType="kr.co.ch05.vo.User3VO">
 		SELECT * FROM `user3`;
 	</select>
-	<insert id="inserUser3">
-		insert into `user3` values (#{uid}, #{name}, #{hp}, #{age})
+	<insert id="insertUser3">
+		insert into `user3` values (#{uid}, #{name}, #{hp}, #{age});
 	</insert>	
 	<update id="updateUser3">
-		update 
+		update `user3` set
+			`name`=#{name},
+			`hp`=#{hp},
+			`age`=#{age}
+		where
+			`uid`=#{uid};
 	</update>
-	<delete id="deleteUser3"></delete>
+	<delete id="deleteUser3">
+		delete from `user3` where `uid`=#{uid}
+	</delete>
 
 </mapper>
